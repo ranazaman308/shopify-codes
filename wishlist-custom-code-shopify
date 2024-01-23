@@ -1,0 +1,35 @@
+## use this code in js file for product add to favorite 
+## 
+##
+
+
+var storeditems = JSON.parse(localStorage.getItem("items"));
+  if( storeditems != null ){
+    for( let i = 0; i<=storeditems.length; i++ ){
+      $('[data-handle="'+storeditems[i]+'"]').addClass('active');
+      $.get('/products/' + storeditems[i] + '?view=wishlist', function (quick_response) {
+        $('#wishlist').append(quick_response);
+      }); 
+    }
+    jQuery('li.wishlist-total span').text(storeditems.length);
+  }
+
+
+
+
+$(document.body).on('click', 'span.pc-wishlist', function(){
+  	var t = $(this),
+     s = t.data('handle'),
+      idxArr = wishlist.indexOf(s);
+   
+    if(!t.hasClass('active')) {
+       t.addClass('active');
+      wishlist.push(s); //Add the text 'item1' to nameArr
+      localStorage.setItem('items', JSON.stringify(wishlist));
+    }else{
+      t.removeClass('active');
+      wishlist.splice(idxArr, 1);
+      localStorage.setItem('items', JSON.stringify(wishlist));
+    }
+    
+  });

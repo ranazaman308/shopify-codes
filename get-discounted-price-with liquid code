@@ -1,0 +1,10 @@
+
+## use this code for get discounted price with liquid code
+
+10percent product price
+------------------
+ {% assign pprice = product.settings.product_detail.price | money_without_currency %}
+             {% assign pricexss = pprice | times: 0.10%}
+    {% assign discountedprice = pprice | minus:pricexss | money %}
+    {% assign discounted_price = pprice | minus:pricexss | money_without_currency %}
+    {% assign discount_price = pprice | minus:pricexss | round: 2 %} 

@@ -1,0 +1,19 @@
+function update_cart_item(){
+  	jQuery.getJSON('/cart.json', function(cart){
+  	 console.log( cart.item_count );
+		jQuery( 'li.side-menu span.badge' ).text(cart.item_count);
+  });
+}
+
+
+<script>
+  jQuery(document).ready(function(){
+    jQuery.getJSON('/cart.json', function(cart){
+      if(cart.item_count == 0 ){
+      	$('.cart-sidebar-products, .cart-title h5 a, .no-items a.btn.btn-continue').hide();
+      }else{
+      	$('.cart-sidebar-products, .cart-title h5 a, .no-items a.btn.btn-continue').show();
+      }
+    });
+  }); 
+</script>
